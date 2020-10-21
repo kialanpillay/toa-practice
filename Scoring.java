@@ -10,18 +10,16 @@ public class Scoring{
             V[i] = read.nextInt();
         }
         int T = read.nextInt();
-
         int MAX = 1;
 
         int[] operators = new int[N];
 
-        for(int i = 0 ; i < Math.pow(N,2) ; i++){
+        for(int i = 0 ; i < Math.pow(2,N) ; i++){
             int temp = i;
-
             for(int j = 0 ; j < N ; j++){
                 operators[j] = temp % 2;
                 temp /= 2;
-            }
+            }     
 
             int S = 1;
             for(int j = 0 ; j < N; j++){
