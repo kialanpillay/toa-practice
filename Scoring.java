@@ -10,7 +10,7 @@ public class Scoring{
             V[i] = read.nextInt();
         }
         int T = read.nextInt();
-        int MAX = 1;
+        int M = 1;
 
         int[] operators = new int[N];
 
@@ -30,11 +30,11 @@ public class Scoring{
                     S*=V[j];
                 }
             }
-            if(S > MAX && S < T){
-                MAX = S;
+            if(S > M && S < T){
+                M = S;
             }
   
         }
-        System.out.println(MAX);
+        System.out.println(M);
     }
 }
