@@ -8,30 +8,39 @@ public class Dividing{
 
         int[]L = new int[N];
 
-        int MAX = 0;
+        long SUM = 0;
 
         for(int j = 0; j < N; j++){
             L[j] = read.nextInt();
-            if(L[j] > MAX){
-                MAX = L[j];
-            }
-        }
-
-        int[]arr = new int[MAX];
-
-        for(int j = 0; j < MAX; j++){
-            arr[j] = j+1;
+            SUM+=L[j];
         }
 
         int K = read.nextInt();
+        int UB, LB;
+        if(SUM/K > L.length){
+            UB = (int)(SUM/K) + 1;
+            LB = L.length;
+        }
+        else{
+            UB = L.length;
+            LB = (int)(SUM/K) + 1;
+        }
 
-        System.out.println(findK(arr, 0, MAX, K, L));
+        int[]arr = new int[UB - LB];
+
+        for(int j = 0; j < arr.length; j++){
+            arr[j] = j + LB;
+        }
+        System.out.println(findK(arr, 0, UB - LB - 1, K, L));
     }
 
-    public static int computeP(int L[], int M){
+    public static int computeP(int L[], int M, int K){
         int P = 0;
         for(int l = 0; l < L.length; l++){
             P += L[l]/M;
+            if(P > K){
+                break;
+            }
         }
         return P;
     }
@@ -40,15 +49,24 @@ public class Dividing{
     { 
         if (r >= l) { 
             int M = (l + (r - l) / 2); 
-            int P = computeP(L, arr[M+1]);
+            int P = computeP(L, arr[M], K);
+            //System.out.println("M = " + arr[M] + " P = " + P);
             if(P == K){
-                return arr[M+1];
+                if(M == r){
+                    return arr[M];
+                }
+                while(P == K){
+                    M++;
+                    P = computeP(L, arr[M], K);
+                    //System.out.println("M = " + arr[M] + " P = " + P);
+                }
+                return arr[M-1];
             }
             if (P < K){ 
                 return findK(arr, l, M - 1, K, L); 
             }    
             return findK(arr, M + 1, r, K, L); 
         } 
-        return l; 
+        return arr[l-1]; 
     } 
 }
