@@ -5,20 +5,18 @@ public class Dividing{
     public static void main(String[]args){
         Scanner read = new Scanner(System.in);
         int N = read.nextInt();
-
         int[]L = new int[N];
-
-        long SUM = 0;
+        long sum = 0;
 
         for(int j = 0; j < N; j++){
             L[j] = read.nextInt();
-            SUM+=L[j];
+            sum+=L[j];
         }
 
         int K = read.nextInt();
         int UB, LB;
-        if(SUM/K > L.length){
-            UB = (int)(SUM/K) + 1;
+        if(sum/K > L.length){
+            UB = (int)(sum/K) + 1;
             LB = L.length;
         }
         else{
@@ -50,7 +48,6 @@ public class Dividing{
         if (r >= l) { 
             int M = (l + (r - l) / 2); 
             int P = computeP(L, arr[M], K);
-            //System.out.println("M = " + arr[M] + " P = " + P);
             if(P == K){
                 if(M == r){
                     return arr[M];
@@ -58,7 +55,6 @@ public class Dividing{
                 while(P == K){
                     M++;
                     P = computeP(L, arr[M], K);
-                    //System.out.println("M = " + arr[M] + " P = " + P);
                 }
                 return arr[M-1];
             }
