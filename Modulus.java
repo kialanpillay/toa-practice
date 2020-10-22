@@ -8,22 +8,16 @@ public class Modulus{
         
         int P = 0;
 
-        if(Z == 0){
-            System.out.println("0");
-        }
-        else{
-
-
-            for(int x = 0 ; x < N; x++){
-                for(int y = 0 ; y < N; y++){
-                    if((x * y)%N == Z){
-                        P++;
-                    }
-    
+        for(int x = 1 ; x < N; x++){
+            for(int y = 1 ; y < N; y++){
+                if((x * y)%N == Z){
+                    P++;
                 }
-    
+
             }
-            System.out.println(P);
+
+        }
+        System.out.println(P);
         }
     }
 }
